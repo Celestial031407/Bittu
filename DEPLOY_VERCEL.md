@@ -109,6 +109,7 @@ No build step is required. Vercel will serve `index.html` at the root URL.
 
 | Issue | What to do |
 |--------|------------|
+| **"Visit" button is disabled** | Vercel has no production deploy yet. Push your code to the repo’s **default branch** (usually `main`): `git add .` → `git commit -m "Deploy"` → `git push origin main`. Wait for the deployment to finish; then "Visit" will work. |
 | 404 on the site | Ensure `index.html` is in the root of the repo (or the Root Directory you set in Vercel). |
 | CSS not loading | Check that `style.css` is in the same folder as `index.html` and that the link in `index.html` is `href="./style.css"`. |
 | Audio not playing | Host the audio file (e.g. `song.mp3`) in the same project or use a public URL; some browsers block autoplay. |
