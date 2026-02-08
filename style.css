@@ -1,289 +1,379 @@
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-
-/* ========== Animated background ========== */
+/* Base & canvas background */
 body, html {
-  font-family: 'Quicksand', 'Great Vibes', sans-serif;
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
   min-height: 100vh;
+  min-height: -webkit-fill-available;
   overflow-x: hidden;
-  background: linear-gradient(-45deg, #ff9a9e, #fecfef, #fad0c4, #ffecd2, #ff9a9e);
-  background-size: 400% 400%;
-  animation: gradientShift 12s ease infinite;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #0a0610;
+  box-sizing: border-box;
 }
 
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+#bokeh-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  display: block;
+  z-index: 0;
 }
 
-/* ========== Floating hearts ========== */
-.hearts {
+/* ========== Text overlay — stylish & interactive ========== */
+.text-overlay {
   position: fixed;
   inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.heart {
-  position: absolute;
-  bottom: -1.5em;
-  color: rgba(255, 105, 135, 0.6);
-  font-size: 1.2rem;
-  animation: floatUp 8s ease-in infinite;
-}
-
-.heart:nth-child(1) { left: 5%; animation-delay: 0s; font-size: 1rem; color: rgba(255, 182, 193, 0.7); }
-.heart:nth-child(2) { left: 15%; animation-delay: 1.5s; font-size: 1.4rem; }
-.heart:nth-child(3) { left: 25%; animation-delay: 0.5s; font-size: 0.9rem; color: rgba(255, 105, 135, 0.5); }
-.heart:nth-child(4) { left: 35%; animation-delay: 2s; font-size: 1.3rem; }
-.heart:nth-child(5) { left: 45%; animation-delay: 0.8s; font-size: 1.1rem; color: rgba(255, 182, 193, 0.8); }
-.heart:nth-child(6) { left: 55%; animation-delay: 1.2s; font-size: 1.5rem; }
-.heart:nth-child(7) { left: 65%; animation-delay: 2.5s; font-size: 0.95rem; }
-.heart:nth-child(8) { left: 75%; animation-delay: 0.3s; font-size: 1.25rem; color: rgba(255, 105, 135, 0.6); }
-.heart:nth-child(9) { left: 85%; animation-delay: 1.8s; font-size: 1.35rem; }
-.heart:nth-child(10) { left: 92%; animation-delay: 0.6s; font-size: 1rem; color: rgba(255, 182, 193, 0.65); }
-.heart:nth-child(11) { left: 8%; animation-delay: 3s; font-size: 1.2rem; }
-.heart:nth-child(12) { left: 42%; animation-delay: 2.2s; font-size: 1.15rem; }
-.heart:nth-child(13) { left: 68%; animation-delay: 1s; font-size: 0.85rem; }
-.heart:nth-child(14) { left: 22%; animation-delay: 2.8s; font-size: 1.45rem; color: rgba(255, 182, 193, 0.75); }
-.heart:nth-child(15) { left: 78%; animation-delay: 0.4s; font-size: 1.05rem; }
-
-@keyframes floatUp {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.7;
-  }
-  90% {
-    opacity: 0.4;
-  }
-  100% {
-    transform: translateY(-100vh) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-/* ========== Layout ========== */
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-}
-
-.header, .main, .footer {
-  position: relative;
   z-index: 1;
-  width: 100%;
-  max-width: 600px;
-  box-sizing: border-box;
-}
-
-/* ========== Header ========== */
-.header {
-  text-align: center;
-  padding: 2rem 1.5rem 0.5rem;
-}
-
-.title {
-  font-family: 'Great Vibes', cursive;
-  font-size: clamp(2rem, 6vw, 3.2rem);
-  font-weight: 400;
-  color: #2d1b2e;
-  margin: 0;
-  text-align: center;
-  text-shadow: 0 2px 20px rgba(255, 105, 135, 0.3);
-  transition: transform 0.3s ease, text-shadow 0.3s ease;
-}
-
-.title:hover {
-  transform: scale(1.02);
-  text-shadow: 0 4px 30px rgba(255, 105, 135, 0.5);
-}
-
-.name {
-  color: #c71585;
-  display: inline-block;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.title:hover .name {
-  color: #ff69b4;
-  transform: scale(1.05);
-}
-
-.nicknames {
-  font-family: 'Quicksand', sans-serif;
-  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
-  color: #5c3d5e;
-  margin: 0.25rem 0 0;
-  letter-spacing: 0.05em;
-  opacity: 0.95;
-  text-align: center;
-}
-
-/* ========== Main & rose section ========== */
-.main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  min-height: 50vh;
-}
-
-.rose-wrapper {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  width: 100%;
-  transition: transform 0.5s ease, filter 0.5s ease;
+  padding: max(1.25rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1.25rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  pointer-events: none;
+  max-width: 100vw;
+  overflow-wrap: break-word;
+}
+@media (min-width: 480px) {
+  .text-overlay { padding: 2rem 1.5rem; }
 }
 
-.rose-wrapper:hover {
-  transform: scale(1.03);
-  filter: drop-shadow(0 0 40px rgba(255, 105, 135, 0.4));
+.text-overlay * {
+  pointer-events: auto;
 }
 
-.rose {
-  position: relative;
-  width: 140px;
-  height: 126px;
+.title, .sub, .propose, .day, .quote {
+  text-align: center;
   margin: 0;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: filter 0.4s ease, transform 0.4s ease;
+  cursor: default;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.35s ease, color 0.35s ease;
 }
 
-.rose:hover {
-  filter: drop-shadow(0 0 20px rgba(255, 105, 135, 0.5));
+/* ----- Title: For Nisha Pal ----- */
+.title {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(2.5rem, 8vw, 4.2rem);
+  font-weight: 400;
+  color: #fff;
+  text-shadow: 0 0 30px rgba(255, 182, 193, 0.5), 0 2px 20px rgba(0, 0, 0, 0.4);
+  margin-bottom: 0.15em;
+}
+
+.title .name {
+  background: linear-gradient(135deg, #ffb6c1 0%, #ffc0cb 40%, #ffd1dc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 20px rgba(255, 182, 193, 0.6));
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.35s ease;
+}
+
+.title:hover,
+.title.touched {
+  transform: scale(1.06);
+}
+
+.title:hover .name,
+.title.touched .name {
+  transform: scale(1.12) rotate(-2deg);
+  filter: drop-shadow(0 0 28px rgba(255, 182, 193, 0.9));
+}
+
+/* ----- Sub: Bittu · Blacky · love ----- */
+.sub {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(0.95rem, 3.5vw, 1.5rem);
+  font-weight: 500;
+  color: rgba(255, 218, 224, 0.95);
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  max-width: 95vw;
+}
+@media (min-width: 480px) {
+  .sub { letter-spacing: 0.12em; margin-bottom: 1.5rem; }
+}
+
+.sub:hover,
+.sub.touched {
   transform: scale(1.08);
+  color: #ffd1dc;
+  text-shadow: 0 0 24px rgba(255, 182, 193, 0.5);
 }
 
-.rose .heart-shape {
-  width: 100%;
-  height: 100%;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.rose + span {
-  display: block;
-  font-family: 'Quicksand', sans-serif;
+/* ----- Propose: Will you marry me? ----- */
+.propose {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
   font-weight: 600;
-  font-size: 1rem;
-  color: #2d1b2e;
-  text-transform: none;
-  text-align: center;
-  width: 100%;
-  margin-top: 1.25rem;
-  letter-spacing: 0.02em;
-  transition: color 0.3s ease, transform 0.3s ease;
+  color: #fff;
+  text-shadow: 0 0 40px rgba(255, 105, 135, 0.4), 0 2px 16px rgba(0, 0, 0, 0.3);
+  margin-bottom: 0.4rem;
 }
 
-.rose-wrapper:hover #prompt {
-  color: #8b2252;
-  transform: scale(1.02);
+.propose:hover,
+.propose.touched {
+  transform: scale(1.1);
+  animation: proposeWiggle 0.6s ease;
+  text-shadow: 0 0 50px rgba(255, 182, 193, 0.7), 0 0 80px rgba(255, 105, 135, 0.3);
 }
 
-#prompt {
-  font-family: 'Quicksand', 'Great Vibes', sans-serif;
-  color: #2d1b2e;
-  font-size: clamp(1.1rem, 3vw, 1.4rem);
+@keyframes proposeWiggle {
+  0%, 100% { transform: scale(1.1) rotate(0deg); }
+  25% { transform: scale(1.12) rotate(-1.5deg); }
+  75% { transform: scale(1.12) rotate(1.5deg); }
+}
+
+/* ----- Day: Propose Day ----- */
+.day {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1rem, 3.5vw, 1.6rem);
+  color: rgba(255, 218, 224, 0.9);
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 480px) {
+  .day { letter-spacing: 0.2em; margin-bottom: 2.5rem; }
+}
+
+.day:hover,
+.day.touched {
+  transform: scale(1.15);
+  animation: dayBounce 0.5s ease;
+}
+
+@keyframes dayBounce {
+  0%, 100% { transform: scale(1.15); }
+  50% { transform: scale(1.22); }
+}
+
+/* ----- Quote ----- */
+.quote {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(0.875rem, 2.8vw, 1.25rem);
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  max-width: 92vw;
+  word-wrap: break-word;
+}
+@media (min-width: 480px) {
+  .quote { max-width: 36em; }
+}
+
+.quote:hover,
+.quote.touched {
+  transform: scale(1.05);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 0 20px rgba(255, 182, 193, 0.3);
+}
+
+/* ----- Entrance animations ----- */
+.animate-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s ease forwards;
+}
+
+.title.animate-in { animation-delay: 0.1s; }
+.sub.animate-in    { animation-delay: 0.3s; }
+.propose.animate-in { animation-delay: 0.5s; }
+.day.animate-in    { animation-delay: 0.7s; }
+.btn-wrap.animate-in { animation-delay: 0.85s; }
+.quote.animate-in  { animation-delay: 1.1s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Cute sparkle on hover (optional extra) */
+.title:hover::after,
+.propose:hover::after {
+  content: " ♥";
+  opacity: 0.9;
+  animation: sparkle 0.8s ease infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ----- Yes / No buttons ----- */
+.btn-wrap {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  min-height: 48px;
+  padding: 0 0.5rem;
+}
+@media (min-width: 480px) {
+  .btn-wrap { gap: 1.5rem; margin-bottom: 2rem; min-height: 52px; }
+}
+
+.btn {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1rem, 3.5vw, 1.4rem);
   font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  min-height: 44px;
+  min-width: 44px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, background 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+}
+@media (min-width: 480px) {
+  .btn { padding: 0.65rem 1.8rem; }
 }
 
-/* ========== Love message card ========== */
-.message.card {
-  width: 100%;
-  max-width: 520px;
-  margin: 2rem 0 3rem;
-  padding: 1.75rem 2rem;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(12px);
-  border-radius: 24px;
-  box-shadow: 0 8px 32px rgba(199, 21, 133, 0.15), 0 2px 8px rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+.btn-yes {
+  background: linear-gradient(135deg, #ff9eb5 0%, #ffb6c1 50%, #ffc0cb 100%);
+  color: #2d1b2e;
+  box-shadow: 0 4px 24px rgba(255, 105, 135, 0.4);
+}
+
+.btn-yes:hover,
+.btn-yes:focus-visible {
+  transform: scale(1.12);
+  box-shadow: 0 8px 32px rgba(255, 105, 135, 0.5);
+}
+
+.btn-yes:active {
+  transform: scale(1.05);
+}
+
+.btn-no {
+  /* In flow by default so it's always visible next to Yes */
+  position: relative;
+  background: rgba(80, 60, 70, 0.9);
+  color: #fff;
+  border: 2px solid rgba(255, 182, 193, 0.6);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: left 0.3s ease-out, top 0.3s ease-out, transform 0.2s ease, opacity 0.2s ease;
+  z-index: 5;
+  min-width: 5rem;
+}
+
+.btn-no.running-away {
+  position: fixed;
+  transform: translate(-50%, -50%);
+}
+
+.btn-no:hover,
+.btn-no:focus {
+  outline: none;
+}
+
+/* Success overlay (after she clicks Yes) */
+.success-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: rgba(10, 6, 16, 0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: max(1.25rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1.25rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
   box-sizing: border-box;
+  pointer-events: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+@media (min-width: 480px) {
+  .success-overlay { padding: 2rem; }
 }
 
-.message.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(199, 21, 133, 0.25), 0 4px 16px rgba(0, 0, 0, 0.08);
-  border-color: rgba(255, 182, 193, 0.5);
+.success-overlay.visible {
+  display: flex;
+  animation: successFade 0.6s ease;
 }
 
-.love-text {
-  font-family: 'Quicksand', sans-serif;
-  font-size: clamp(0.95rem, 2.2vw, 1.1rem);
-  line-height: 1.7;
-  color: #3d2a3e;
+@keyframes successFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.success-text {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(1.75rem, 10vw, 4.5rem);
+  color: #ffb6c1;
+  text-align: center;
   margin: 0;
-  text-align: center;
-  max-width: 100%;
+  max-width: 95vw;
+  text-shadow: 0 0 40px rgba(255, 182, 193, 0.5);
 }
 
-/* ========== Footer ========== */
-.footer {
-  text-align: center;
-  padding: 1.5rem 1.5rem 2rem;
+.success-sub {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1rem, 4vw, 1.8rem);
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 0.5rem;
+  font-style: italic;
+  max-width: 95vw;
+  word-wrap: break-word;
 }
 
-.signature {
-  font-family: 'Quicksand', sans-serif;
-  font-size: clamp(0.9rem, 2vw, 1rem);
-  color: #5c3d5e;
-  margin: 0;
-  text-align: center;
-  line-height: 1.5;
-}
-
-.rose .text {
-  position: absolute;
+/* "How dare u" message when she clicks No */
+.how-dare-msg {
+  position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 220px;
-  z-index: 100;
-  opacity: 0;
-  transition: opacity 1s ease;
+  z-index: 15;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.25rem, 5vw, 2.2rem);
+  font-weight: 600;
+  color: #ffb6c1;
+  text-shadow: 0 0 30px rgba(255, 105, 135, 0.6);
+  padding: 1rem 1.25rem;
+  margin: 0 1rem;
+  max-width: calc(100vw - 2rem);
+  background: rgba(20, 10, 18, 0.9);
+  border: 2px solid rgba(255, 182, 193, 0.5);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  animation: howDarePop 0.35s ease;
   pointer-events: none;
-  text-align: center;
+}
+@media (min-width: 480px) {
+  .how-dare-msg { padding: 1rem 1.5rem; margin: 0; }
 }
 
-.rose .text span {
-  display: block;
-  width: 100%;
-  line-height: 1.3;
-  text-align: center;
-  font-family: 'Great Vibes', cursive;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
+.how-dare-msg.how-dare-fade {
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
-.rose .text span:nth-child(1) {
-  font-size: clamp(1.5rem, 4vw, 1.85rem);
-  color: #ffffff;
-  font-weight: 400;
-}
-
-.rose .text span:nth-child(2) {
-  font-size: clamp(1.8rem, 5vw, 2.25rem);
-  color: #fff5f8;
-  font-weight: 400;
-  margin-top: 0.15em;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 2px 10px rgba(0, 0, 0, 0.4);
-}
-
-.rose:hover > .text {
-  opacity: 1;
+@keyframes howDarePop {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }

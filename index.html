@@ -2,73 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0610">
     <link rel="stylesheet" href="./style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>For Nisha — Rose Day 🌹</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+    <title>For Nisha — Propose Day 💍</title>
     <link rel="icon" type="image/jpg" href="https://c4.wallpaperflare.com/wallpaper/812/187/770/kimi-no-na-wa-tachibana-taki-miyamizu-mitsuha-anime-wallpaper-preview.jpg">
 </head>
 <body>
-  <!-- Floating hearts -->
-  <div class="hearts" aria-hidden="true">
-    <span class="heart">♥</span>
-    <span class="heart">♥</span>
-    <span class="heart">♥</span>
-    <span class="heart">♥</span>
-    <span class="heart">♥</span>
-    <span class="heart">♥</span>
-    <span class="heart">♥</span>
-    <span class="heart">♥</span>
-    <span class="heart">♥</span>
-    <span class="heart">♥</span>
-    <span class="heart">♥</span>
-    <span class="heart">♥</span>
-    <span class="heart">♥</span>
-    <span class="heart">♥</span>
-    <span class="heart">♥</span>
-  </div>
+  <canvas id="bokeh-bg" aria-hidden="true"></canvas>
 
-  <header class="header">
-    <h1 class="title">For <span class="name">Nisha Pal</span></h1>
-    <p class="nicknames">My Bittu · My Blacky · My Billu ✨</p>
-  </header>
-
-  <main class="main">
-    <div class="rose-wrapper">
-      <div class="rose">
-        <svg class="heart-shape" viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <defs>
-            <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#e63946"/>
-              <stop offset="50%" style="stop-color:#c1121f"/>
-              <stop offset="100%" style="stop-color:#9d0208"/>
-            </linearGradient>
-          </defs>
-          <path d="M50 85 C50 85 10 55 10 30 C10 10 28 5 50 25 C72 5 90 10 90 30 C90 55 50 85 50 85 Z" fill="url(#heartGrad)"/>
-        </svg>
-        <div class="text">
-          <span>Happy Rose Day, Bittu 💕</span>
-          <span>I love you</span>
-        </div>
-      </div>
-      <span id="prompt">Touch the heart, Bittu</span>
+  <div class="text-overlay">
+    <h1 class="title animate-in">For <span class="name">Nisha Pal</span></h1>
+    <p class="sub animate-in">My Bittu  ·  My Blacky  ·  My love</p>
+    <p class="propose animate-in">Will you marry me?</p>
+    <p class="day animate-in">💍 Propose Day 💍</p>
+    <div class="btn-wrap animate-in">
+      <button type="button" class="btn btn-yes">Yes 💕</button>
+      <button type="button" class="btn btn-no" id="btn-no" tabindex="-1">No</button>
     </div>
-
-    <section class="message card">
-      <p class="love-text">Every rose is for you today — and every day. You're my Nisha, my Bittu, my Blacky, my Billu, and my favorite person in the whole world. 💕</p>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p class="signature">With all my love, always — Your one and only Paglu Rajuuuuu 😌✨</p>
-  </footer>
-
-  <div class="audio-wrap" style="display: none;">
-    <audio autoplay loop>
-      <source src="https://heyyouu.netlify.app/song.mp3" type="audio/mp3">
-    </audio>
+    <p class="quote animate-in">The longer I'm with you<br>The more I love you. ♥<br>And I want Grow Old With You. So that u lick my bunty all the time.Hehehehe</p>
   </div>
+
+  <div class="success-overlay" id="success-overlay" aria-hidden="true">
+    <p class="success-text">I knew u would say yes 💕<br><span class="success-sub">and u are my Wife now and my Bunty is yours forever</span></p>
+  </div>
+
+  <script src="https://code.createjs.com/1.0.0/easeljs.min.js"></script>
+  <script src="./bokeh-bg.js"></script>
+  <script src="./text-interaction.js"></script>
+  <script src="./yes-no.js"></script>
 </body>
 </html>
