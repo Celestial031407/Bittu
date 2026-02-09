@@ -1,379 +1,303 @@
-/* Base & canvas background */
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  background: #0a0610;
+/* Chocolate Day site for Nisha */
+
+:root {
+  --choco-deep: #201015;
+  --choco-mid: #3b2418;
+  --choco-soft: #6b4128;
+  --choco-cream: #f7e3c9;
+  --choco-rose: #ffb3c6;
+}
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-#bokeh-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
+html,
+body {
   height: 100%;
-  min-width: 100vw;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
-  display: block;
-  z-index: 0;
 }
 
-/* ========== Text overlay — stylish & interactive ========== */
-.text-overlay {
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: radial-gradient(circle at top left, #5c3323, var(--choco-deep));
+  color: #fff9f3;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.choco-background {
   position: fixed;
   inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.choco-orbit {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 20%, #fbe1b5, #6b4128);
+  opacity: 0.22;
+  filter: blur(1px);
+  animation: chocoFloat 18s ease-in-out infinite;
+}
+
+.choco-orbit--1 {
+  width: 420px;
+  height: 420px;
+  top: -140px;
+  left: -80px;
+}
+
+.choco-orbit--2 {
+  width: 360px;
+  height: 360px;
+  bottom: -140px;
+  right: -60px;
+  animation-delay: -6s;
+}
+
+.choco-orbit--3 {
+  width: 260px;
+  height: 260px;
+  top: 45%;
+  right: 15%;
+  animation-delay: -11s;
+}
+
+@keyframes chocoFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-18px) scale(1.06);
+  }
+}
+
+.page {
+  position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2.75rem 1.5rem 3.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.hero {
+  text-align: center;
+}
+
+.hero-tag {
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(247, 227, 201, 0.82);
+  margin-bottom: 0.8rem;
+}
+
+.hero-title {
+  font-family: "Pacifico", cursive;
+  font-size: clamp(2.2rem, 4.8vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.2;
+  text-shadow: 0 10px 28px rgba(0, 0, 0, 0.85);
+  margin-bottom: 0.5rem;
+}
+
+.hero-name {
+  color: var(--choco-cream);
+}
+
+.hero-line {
+  font-size: clamp(0.95rem, 2.3vw, 1.1rem);
+  color: rgba(247, 227, 201, 0.9);
+  max-width: 32rem;
+  margin: 0.4rem auto 1rem;
+}
+
+/* ===== Envelope interaction in centre ===== */
+
+.envelope-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: max(1.25rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1.25rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
-  pointer-events: none;
-  max-width: 100vw;
-  overflow-wrap: break-word;
-}
-@media (min-width: 480px) {
-  .text-overlay { padding: 2rem 1.5rem; }
+  gap: 0.75rem;
+  margin-top: 5.5rem;
+  animation: envelopeFloat 6s ease-in-out infinite;
 }
 
-.text-overlay * {
-  pointer-events: auto;
-}
-
-.title, .sub, .propose, .day, .quote {
-  text-align: center;
-  margin: 0;
-  cursor: default;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.35s ease, color 0.35s ease;
-}
-
-/* ----- Title: For Nisha Pal ----- */
-.title {
-  font-family: "Great Vibes", cursive;
-  font-size: clamp(2.5rem, 8vw, 4.2rem);
-  font-weight: 400;
-  color: #fff;
-  text-shadow: 0 0 30px rgba(255, 182, 193, 0.5), 0 2px 20px rgba(0, 0, 0, 0.4);
-  margin-bottom: 0.15em;
-}
-
-.title .name {
-  background: linear-gradient(135deg, #ffb6c1 0%, #ffc0cb 40%, #ffd1dc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 0 20px rgba(255, 182, 193, 0.6));
-  display: inline-block;
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.35s ease;
-}
-
-.title:hover,
-.title.touched {
-  transform: scale(1.06);
-}
-
-.title:hover .name,
-.title.touched .name {
-  transform: scale(1.12) rotate(-2deg);
-  filter: drop-shadow(0 0 28px rgba(255, 182, 193, 0.9));
-}
-
-/* ----- Sub: Bittu · Blacky · love ----- */
-.sub {
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(0.95rem, 3.5vw, 1.5rem);
-  font-weight: 500;
-  color: rgba(255, 218, 224, 0.95);
-  letter-spacing: 0.08em;
-  margin-bottom: 1rem;
-  max-width: 95vw;
-}
-@media (min-width: 480px) {
-  .sub { letter-spacing: 0.12em; margin-bottom: 1.5rem; }
-}
-
-.sub:hover,
-.sub.touched {
-  transform: scale(1.08);
-  color: #ffd1dc;
-  text-shadow: 0 0 24px rgba(255, 182, 193, 0.5);
-}
-
-/* ----- Propose: Will you marry me? ----- */
-.propose {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(1.6rem, 5vw, 2.4rem);
-  font-weight: 600;
-  color: #fff;
-  text-shadow: 0 0 40px rgba(255, 105, 135, 0.4), 0 2px 16px rgba(0, 0, 0, 0.3);
-  margin-bottom: 0.4rem;
-}
-
-.propose:hover,
-.propose.touched {
-  transform: scale(1.1);
-  animation: proposeWiggle 0.6s ease;
-  text-shadow: 0 0 50px rgba(255, 182, 193, 0.7), 0 0 80px rgba(255, 105, 135, 0.3);
-}
-
-@keyframes proposeWiggle {
-  0%, 100% { transform: scale(1.1) rotate(0deg); }
-  25% { transform: scale(1.12) rotate(-1.5deg); }
-  75% { transform: scale(1.12) rotate(1.5deg); }
-}
-
-/* ----- Day: Propose Day ----- */
-.day {
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(1rem, 3.5vw, 1.6rem);
-  color: rgba(255, 218, 224, 0.9);
-  letter-spacing: 0.1em;
-  margin-bottom: 1.5rem;
-}
-@media (min-width: 480px) {
-  .day { letter-spacing: 0.2em; margin-bottom: 2.5rem; }
-}
-
-.day:hover,
-.day.touched {
-  transform: scale(1.15);
-  animation: dayBounce 0.5s ease;
-}
-
-@keyframes dayBounce {
-  0%, 100% { transform: scale(1.15); }
-  50% { transform: scale(1.22); }
-}
-
-/* ----- Quote ----- */
-.quote {
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(0.875rem, 2.8vw, 1.25rem);
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.75);
-  line-height: 1.6;
-  letter-spacing: 0.04em;
-  max-width: 92vw;
-  word-wrap: break-word;
-}
-@media (min-width: 480px) {
-  .quote { max-width: 36em; }
-}
-
-.quote:hover,
-.quote.touched {
-  transform: scale(1.05);
-  color: rgba(255, 255, 255, 0.95);
-  text-shadow: 0 0 20px rgba(255, 182, 193, 0.3);
-}
-
-/* ----- Entrance animations ----- */
-.animate-in {
+.envelope-toggle {
+  position: absolute;
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 1s ease forwards;
+  pointer-events: none;
 }
 
-.title.animate-in { animation-delay: 0.1s; }
-.sub.animate-in    { animation-delay: 0.3s; }
-.propose.animate-in { animation-delay: 0.5s; }
-.day.animate-in    { animation-delay: 0.7s; }
-.btn-wrap.animate-in { animation-delay: 0.85s; }
-.quote.animate-in  { animation-delay: 1.1s; }
+.envelope {
+  position: relative;
+  width: 220px;
+  max-width: 70vw;
+  height: 150px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
 
-@keyframes fadeUp {
-  to {
-    opacity: 1;
+.envelope-front {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #f7e3c9, #e7c7a2);
+  border-radius: 12px;
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.6);
+  overflow: visible;
+  z-index: 1;
+}
+
+.envelope-front::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      135deg,
+      rgba(120, 80, 50, 0.16),
+      rgba(255, 255, 255, 0.05)
+    ),
+    linear-gradient(135deg, transparent 49%, #c89a6a 50%, transparent 51%);
+  background-size: cover;
+  opacity: 0.9;
+}
+
+.envelope-flap {
+  position: absolute;
+  inset: 0;
+  transform-origin: top center;
+  background: linear-gradient(135deg, #e7c7a2, #c89a6a);
+  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 0, 0 0);
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.55);
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.6s ease;
+  z-index: 3;
+}
+
+.envelope-paper {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 10px;
+  padding: 0.85rem 0.9rem 1rem;
+  border-radius: 10px;
+  background: #fff9f3;
+  color: #5a3521;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  transform: translateY(60%);
+  opacity: 0;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.6s ease;
+  z-index: 2;
+}
+
+.envelope-paper-line {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  margin: 0.1rem 0;
+}
+
+.envelope-paper-line:first-child {
+  font-weight: 600;
+}
+
+.envelope-paper-line--center {
+  text-align: center;
+  margin-top: 0.45rem;
+}
+
+.envelope-paper-image {
+  display: block;
+  width: 100%;
+  max-height: 140px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.envelope-hint {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(247, 227, 201, 0.8);
+}
+
+.envelope-hint::after {
+  content: " ↟";
+}
+
+.envelope:hover .envelope-flap {
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.7);
+}
+
+.envelope-toggle:checked + .envelope .envelope-flap {
+  transform: rotateX(-140deg);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.4);
+}
+
+.envelope-toggle:checked + .envelope .envelope-paper {
+  transform: translateY(-20%);
+  opacity: 1;
+}
+
+@keyframes envelopeFloat {
+  0%,
+  100% {
     transform: translateY(0);
   }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
-/* Cute sparkle on hover (optional extra) */
-.title:hover::after,
-.propose:hover::after {
-  content: " ♥";
-  opacity: 0.9;
-  animation: sparkle 0.8s ease infinite;
-}
-
-@keyframes sparkle {
-  0%, 100% { opacity: 0.7; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.2); }
-}
-
-/* ----- Yes / No buttons ----- */
-.btn-wrap {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-  min-height: 48px;
-  padding: 0 0.5rem;
-}
-@media (min-width: 480px) {
-  .btn-wrap { gap: 1.5rem; margin-bottom: 2rem; min-height: 52px; }
-}
-
-.btn {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(1rem, 3.5vw, 1.4rem);
-  font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  min-height: 44px;
-  min-width: 44px;
-  border: none;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, background 0.3s ease;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  user-select: none;
-}
-@media (min-width: 480px) {
-  .btn { padding: 0.65rem 1.8rem; }
-}
-
-.btn-yes {
-  background: linear-gradient(135deg, #ff9eb5 0%, #ffb6c1 50%, #ffc0cb 100%);
-  color: #2d1b2e;
-  box-shadow: 0 4px 24px rgba(255, 105, 135, 0.4);
-}
-
-.btn-yes:hover,
-.btn-yes:focus-visible {
-  transform: scale(1.12);
-  box-shadow: 0 8px 32px rgba(255, 105, 135, 0.5);
-}
-
-.btn-yes:active {
-  transform: scale(1.05);
-}
-
-.btn-no {
-  /* In flow by default so it's always visible next to Yes */
-  position: relative;
-  background: rgba(80, 60, 70, 0.9);
-  color: #fff;
-  border: 2px solid rgba(255, 182, 193, 0.6);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  transition: left 0.3s ease-out, top 0.3s ease-out, transform 0.2s ease, opacity 0.2s ease;
-  z-index: 5;
-  min-width: 5rem;
-}
-
-.btn-no.running-away {
-  position: fixed;
-  transform: translate(-50%, -50%);
-}
-
-.btn-no:hover,
-.btn-no:focus {
-  outline: none;
-}
-
-/* Success overlay (after she clicks Yes) */
-.success-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 10;
-  background: rgba(10, 6, 16, 0.92);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: max(1.25rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1.25rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
-  box-sizing: border-box;
-  pointer-events: auto;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-@media (min-width: 480px) {
-  .success-overlay { padding: 2rem; }
-}
-
-.success-overlay.visible {
-  display: flex;
-  animation: successFade 0.6s ease;
-}
-
-@keyframes successFade {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.success-text {
-  font-family: "Great Vibes", cursive;
-  font-size: clamp(1.75rem, 10vw, 4.5rem);
-  color: #ffb6c1;
+.note {
   text-align: center;
-  margin: 0;
-  max-width: 95vw;
-  text-shadow: 0 0 40px rgba(255, 182, 193, 0.5);
+  max-width: 34rem;
+  margin: 0 auto;
 }
 
-.success-sub {
-  display: block;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(1rem, 4vw, 1.8rem);
-  color: rgba(255, 255, 255, 0.9);
-  margin-top: 0.5rem;
+.note-line {
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: rgba(252, 242, 232, 0.92);
+}
+
+.note-line + .note-line {
+  margin-top: 0.45rem;
+}
+
+.note-sign {
+  margin-top: 1.2rem;
+  font-size: 1rem;
   font-style: italic;
-  max-width: 95vw;
-  word-wrap: break-word;
+  color: var(--choco-cream);
 }
 
-/* "How dare u" message when she clicks No */
-.how-dare-msg {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 15;
-  font-family: "Playfair Display", serif;
-  font-size: clamp(1.25rem, 5vw, 2.2rem);
-  font-weight: 600;
-  color: #ffb6c1;
-  text-shadow: 0 0 30px rgba(255, 105, 135, 0.6);
-  padding: 1rem 1.25rem;
-  margin: 0 1rem;
-  max-width: calc(100vw - 2rem);
-  background: rgba(20, 10, 18, 0.9);
-  border: 2px solid rgba(255, 182, 193, 0.5);
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  animation: howDarePop 0.35s ease;
-  pointer-events: none;
-}
-@media (min-width: 480px) {
-  .how-dare-msg { padding: 1rem 1.5rem; margin: 0; }
+.note-sign span {
+  display: inline-block;
+  margin-left: 0.25rem;
+  font-family: "Pacifico", cursive;
+  font-size: 1.4rem;
+  color: var(--choco-rose);
 }
 
-.how-dare-msg.how-dare-fade {
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-@keyframes howDarePop {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+@media (max-width: 600px) {
+  .page {
+    padding: 2.25rem 1.2rem 3rem;
+    gap: 2rem;
   }
 }
+

@@ -1,38 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0a0610">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
-    <title>For Nisha — Propose Day 💍</title>
-    <link rel="icon" type="image/jpg" href="https://c4.wallpaperflare.com/wallpaper/812/187/770/kimi-no-na-wa-tachibana-taki-miyamizu-mitsuha-anime-wallpaper-preview.jpg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Nisha — Happy Chocolate Day 🍫</title>
+  <link rel="icon" type="image/png" href="https://fav.farm/%F0%9F%8D%AB" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <canvas id="bokeh-bg" aria-hidden="true"></canvas>
-
-  <div class="text-overlay">
-    <h1 class="title animate-in">For <span class="name">Nisha Pal</span></h1>
-    <p class="sub animate-in">My Bittu  ·  My Blacky  ·  My love</p>
-    <p class="propose animate-in">Will you marry me?</p>
-    <p class="day animate-in">💍 Propose Day 💍</p>
-    <div class="btn-wrap animate-in">
-      <button type="button" class="btn btn-yes">Yes 💕</button>
-      <button type="button" class="btn btn-no" id="btn-no" tabindex="-1">No</button>
-    </div>
-    <p class="quote animate-in">The longer I'm with you<br>The more I love you. ♥<br>And I  want Grow Old With You. So that u lick my bunty all the time.Hehehehe</p>
+  <div class="choco-background" aria-hidden="true">
+    <div class="choco-orbit choco-orbit--1"></div>
+    <div class="choco-orbit choco-orbit--2"></div>
+    <div class="choco-orbit choco-orbit--3"></div>
   </div>
 
-  <div class="success-overlay" id="success-overlay" aria-hidden="true">
-    <p class="success-text">I knew u would say yes 💕<br><span class="success-sub">and u are my Wife now and my Bunty is yours forever</span></p>
-  </div>
+  <main class="page">
+    <header class="hero">
+      <p class="hero-tag">For my sweetest girl</p>
+      <h1 class="hero-title">
+        Happy Chocolate Day<br />
+        <span class="hero-name">Nisha (Bittu · Blacky)</span>
+      </h1>
+      <p class="hero-line">
+        If love had a flavour, ours would be warm, melty and extra chocolatey.
+      </p>
 
-  <script src="https://code.createjs.com/1.0.0/easeljs.min.js"></script>
-  <script src="./bokeh-bg.js"></script>
-  <script src="./text-interaction.js"></script>
-  <script src="./yes-no.js"></script>
+      <div class="envelope-wrap">
+        <input
+          type="checkbox"
+          id="open-envelope"
+          class="envelope-toggle"
+          aria-label="Open love letter"
+        />
+        <label for="open-envelope" class="envelope">
+          <div class="envelope-paper">
+            <img
+              class="envelope-paper-image"
+              src="./images/chocolate-box.png"
+              alt="Chocolate surprise for you"
+            />
+            <p class="envelope-paper-line envelope-paper-line--center">
+              The only chocolate I wanna give u 💋
+            </p>
+          </div>
+          <div class="envelope-front"></div>
+          <div class="envelope-flap"></div>
+        </label>
+        <p class="envelope-hint">Tap the envelope to open your chocolate letter</p>
+      </div>
+    </header>
+
+    <section class="note" aria-label="Chocolate day note">
+      <p class="note-line">
+        Today, every chocolate in the world is secretly from me to you.
+      </p>
+      <p class="note-line">
+        Thank you for being the sweetest part of my life, my constant craving and my forever favourite person.
+      </p>
+      <p class="note-sign">
+        With all my love,
+        <span>your chocoholic Raj</span>
+      </p>
+    </section>
+  </main>
 </body>
 </html>
+
